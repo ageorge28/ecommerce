@@ -1,1 +1,1 @@
-Ecommerce application created using Laravel and MySQL
+An ecommerce application created using Laravel and MySQL
