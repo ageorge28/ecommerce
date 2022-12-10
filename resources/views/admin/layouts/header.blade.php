@@ -102,7 +102,7 @@
 		  </li>	
 		  
 		@php
-			$admin = \App\Models\Admin::first();
+			$admin = Auth::user();
 		@endphp
 
 	      <!-- User Account-->

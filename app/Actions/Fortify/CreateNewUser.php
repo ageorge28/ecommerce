@@ -28,11 +28,18 @@ class CreateNewUser implements CreatesNewUsers
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['required', 'accepted'] : '',
         ])->validate();
 
+        $notification = array (
+            'message' => 'User Created Successfully',
+            'alert-type' => 'success'
+        );
+
         return User::create([
             'name' => $input['name'],
             'email' => $input['email'],
             'phone' => $input['phone'],
             'password' => Hash::make($input['password']),
         ]);
+
+        return redirect()->route('dashboard')->with($notification);
     }
 }

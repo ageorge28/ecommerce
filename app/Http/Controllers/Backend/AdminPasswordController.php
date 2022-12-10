@@ -22,7 +22,7 @@ class AdminPasswordController extends Controller
             'password' => 'required|confirmed'
         ]);
 
-        $admin = Admin::first();
+        $admin = Auth::user();
 
         if(Hash::check($request->current_password, $admin->password))
         {

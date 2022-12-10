@@ -2,30 +2,31 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Http\Controllers\Controller;
 use App\Models\Admin;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class AdminProfileController extends Controller
 {
     public function index()
     {
-        $admin = Admin::first();
+        $admin = Auth::user();
         return view('admin.profile.index', compact('admin'));
 
     }
 
     public function edit()
     {
-        $admin = Admin::first();
+        $admin = Auth::user();
         return view('admin.profile.edit', compact('admin'));
     }
 
     public function update(Request $request)
     {
-        $admin = Admin::first();
+        $admin = Auth::user();
 
         $request->validate([
             'name' => 'required',

@@ -1,10 +1,16 @@
+@php
+  $setting = \App\Models\Setting::first();
+@endphp
+
 <footer id="footer" class="footer color-bg">
   <div class="footer-bottom">
     <div class="container">
       <div class="row">
         <div class="col-xs-12 col-sm-6 col-md-3">
           <div class="module-heading">
-            <h4 class="module-title">Contact Us</h4>
+            <h4 class="module-title">
+              @if(session()->get('language') == 'Hindi') संपर्क करें @else Contact Us @endif
+            </h4>
           </div>
           <!-- /.module-heading -->
           
@@ -13,26 +19,26 @@
               <li class="media">
                 <div class="pull-left"> <span class="icon fa-stack fa-lg"> <i class="fa fa-map-marker fa-stack-1x fa-inverse"></i> </span> </div>
                 <div class="media-body">
-                  <p>ThemesGround, 789 Main rd, Anytown, CA 12345 USA</p>
+                  <p>{{ $setting->name }}, {{ $setting->address }}</p>
                 </div>
               </li>
               <li class="media">
                 <div class="pull-left"> <span class="icon fa-stack fa-lg"> <i class="fa fa-mobile fa-stack-1x fa-inverse"></i> </span> </div>
                 <div class="media-body">
-                  <p>+(888) 123-4567<br>
-                    +(888) 456-7890</p>
+                  <p>{{ $setting->phone1 }}<br>
+                    {{ $setting->phone2 }}</p>
                 </div>
               </li>
               <li class="media">
                 <div class="pull-left"> <span class="icon fa-stack fa-lg"> <i class="fa fa-envelope fa-stack-1x fa-inverse"></i> </span> </div>
-                <div class="media-body"> <span><a href="#">flipmart@themesground.com</a></span> </div>
+                <div class="media-body"> <span><a href="#">{{ $setting->email }}</a></span> </div>
               </li>
             </ul>
           </div>
           <!-- /.module-body --> 
         </div>
         <!-- /.col -->
-        
+{{--         
         <div class="col-xs-12 col-sm-6 col-md-3">
           <div class="module-heading">
             <h4 class="module-title">Customer Service</h4>
@@ -49,10 +55,10 @@
             </ul>
           </div>
           <!-- /.module-body --> 
-        </div>
+        </div> --}}
         <!-- /.col -->
         
-        <div class="col-xs-12 col-sm-6 col-md-3">
+        {{-- <div class="col-xs-12 col-sm-6 col-md-3">
           <div class="module-heading">
             <h4 class="module-title">Corporation</h4>
           </div>
@@ -83,9 +89,9 @@
               <li><a href="#" title="Blog">Blog</a></li>
               <li><a href="#" title="Company">Company</a></li>
               <li><a href="#" title="Investor Relations">Investor Relations</a></li>
-              <li class=" last"><a href="contact-us.html" title="Suppliers">Contact Us</a></li>
+              <li class=" last"><a href="{{ route('contact') }}" title="Suppliers">Contact Us</a></li>
             </ul>
-          </div>
+          </div> --}}
           <!-- /.module-body --> 
         </div>
       </div>
@@ -95,13 +101,13 @@
     <div class="container">
       <div class="col-xs-12 col-sm-6 no-padding social">
         <ul class="link">
-          <li class="fb pull-left"><a target="_blank" rel="nofollow" href="#" title="Facebook"></a></li>
-          <li class="tw pull-left"><a target="_blank" rel="nofollow" href="#" title="Twitter"></a></li>
-          <li class="googleplus pull-left"><a target="_blank" rel="nofollow" href="#" title="GooglePlus"></a></li>
-          <li class="rss pull-left"><a target="_blank" rel="nofollow" href="#" title="RSS"></a></li>
+          <li class="fb pull-left"><a target="_blank" rel="nofollow" href="{{ $setting->facebook }}" title="Facebook"></a></li>
+          <li class="tw pull-left"><a target="_blank" rel="nofollow" href="{{ $setting->twitter }}" title="Twitter"></a></li>
+          <li class="googleplus pull-left"><a target="_blank" rel="nofollow" href="" title="GooglePlus"></a></li>
+          <li class="rss pull-left"><a target="_blank" rel="nofollow" href="" title="RSS"></a></li>
           <li class="pintrest pull-left"><a target="_blank" rel="nofollow" href="#" title="PInterest"></a></li>
-          <li class="linkedin pull-left"><a target="_blank" rel="nofollow" href="#" title="Linkedin"></a></li>
-          <li class="youtube pull-left"><a target="_blank" rel="nofollow" href="#" title="Youtube"></a></li>
+          <li class="linkedin pull-left"><a target="_blank" rel="nofollow" href="{{ $setting->linkedin }}" title="Linkedin"></a></li>
+          <li class="youtube pull-left"><a target="_blank" rel="nofollow" href="{{ $setting->youtube }}" title="Youtube"></a></li>
         </ul>
       </div>
       <div class="col-xs-12 col-sm-6 no-padding">
